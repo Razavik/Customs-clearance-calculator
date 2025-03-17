@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="./images/other/favIco.ico" type="image/x-icon">
+    <title>Калькулятор</title>
+</head>
+<body>
+    <main>
+        <!-- Компонент калькулятора растаможки -->
+<section class="calculator">
+	<div class="container">
+		<div class="calculator__wrapper">
+			<!-- Компонент формы калькулятора растаможки -->
+<div class="calculator__left">
+	<h2 class="calculator__title">Калькулятор растаможки</h2>
+
+	<div class="calculator__form">
+		<div class="calculator__field">
+			<label class="calculator__label">Стоимость авто в Евро</label>
+			<input
+				type="number"
+				class="calculator__input"
+				id="carCost"
+				placeholder="Введите стоимость"
+			/>
+		</div>
+
+		<div class="calculator__field">
+			<label class="calculator__label">Тип ТС</label>
+			<div class="calculator__radio-group">
+				<div class="calculator__radio">
+					<input type="radio" id="carTypeAuto" name="carType" value="auto" checked />
+					<label for="carTypeAuto">Авто</label>
+				</div>
+				<div class="calculator__radio">
+					<input type="radio" id="carTypeMoto" name="carType" value="moto" />
+					<label for="carTypeMoto">Мото</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="calculator__field">
+			<label class="calculator__label">Объем двигателя в см3</label>
+			<input
+				type="number"
+				class="calculator__input"
+				id="engineVolume"
+				placeholder="Введите объем"
+			/>
+		</div>
+
+		<div class="calculator__field">
+			<label class="calculator__label">Тип двигателя</label>
+			<div class="calculator__radio-group">
+				<div class="calculator__radio">
+					<input type="radio" id="engineTypeIce" name="engineType" value="ice" checked />
+					<label for="engineTypeIce">ДВС</label>
+				</div>
+				<div class="calculator__radio">
+					<input
+						type="radio"
+						id="engineTypeElectric"
+						name="engineType"
+						value="electric"
+					/>
+					<label for="engineTypeElectric">Электро</label>
+				</div>
+			</div>
+			<div class="calculator__checkbox">
+				<input type="checkbox" id="decree140" name="decree140" />
+				<label for="decree140">с учетом 140-го Указа</label>
+			</div>
+		</div>
+
+		<div class="calculator__field">
+			<label class="calculator__label">Возраст ТС</label>
+			<div class="calculator__radio-group calculator__radio-group--column">
+				<div class="calculator__radio calculator__radio--block">
+					<input type="radio" id="ageUnder3" name="carAge" value="under3" checked />
+					<label for="ageUnder3">до 3-х лет</label>
+				</div>
+				<div class="calculator__radio calculator__radio--block">
+					<input type="radio" id="age3to5" name="carAge" value="3to5" />
+					<label for="age3to5">3-5 лет</label>
+				</div>
+				<div class="calculator__radio calculator__radio--block">
+					<input type="radio" id="ageOver5" name="carAge" value="over5" />
+					<label for="ageOver5">старше 5 лет</label>
+				</div>
+			</div>
+		</div>
+
+		<button type="button" class="calculator__button" id="calculateButton">Рассчитать</button>
+	</div>
+</div>
+
+			<!-- Компонент результатов калькулятора растаможки -->
+<div class="calculator__right">
+    <h3 class="calculator__subtitle">Результаты расчета</h3>
+    
+    <div class="calculator__results">
+        <div class="calculator__result-row">
+            <span class="calculator__result-label">Стоимость авто</span>
+            <span class="calculator__result-value" id="resultCarCost">—</span>
+        </div>
+        <div class="calculator__result-row">
+            <span class="calculator__result-label">Таможенная пошлина</span>
+            <span class="calculator__result-value" id="resultDuty">—</span>
+        </div>
+        <div class="calculator__result-row">
+            <span class="calculator__result-label">Таможенный сбор</span>
+            <span class="calculator__result-value" id="resultCustomsFee">—</span>
+        </div>
+        <div class="calculator__result-row">
+            <span class="calculator__result-label">Утилизационный сбор</span>
+            <span class="calculator__result-value" id="resultRecyclingFee">—</span>
+        </div>
+        <div class="calculator__result-row">
+            <span class="calculator__result-label">ЭПТС</span>
+            <span class="calculator__result-value" id="resultEPTS">—</span>
+        </div>
+        
+        <div class="calculator__result-total">
+            <span class="calculator__result-total-label">Итого:</span>
+            <span class="calculator__result-total-value" id="resultTotal">—</span>
+        </div>
+    </div>
+</div>
+
+		</div>
+	</div>
+</section>
+
+    </main>
+    <script src="./js/index.bundle.js"></script>
+</body>
+</html>
