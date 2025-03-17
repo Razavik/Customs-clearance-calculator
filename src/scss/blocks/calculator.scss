@@ -140,25 +140,6 @@
 		}
 	}
 
-	&__tooltip {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		width: 18px;
-		height: 18px;
-		border-radius: 50%;
-		background-color: #e0e0e0;
-		color: #333;
-		font-size: 12px;
-		font-weight: bold;
-		cursor: pointer;
-		margin-left: 5px;
-
-		&:hover {
-			background-color: #ccc;
-		}
-	}
-
 	&__button {
 		margin-top: 10px;
 		height: 46px;
