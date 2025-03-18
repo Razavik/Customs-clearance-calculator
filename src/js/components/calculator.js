@@ -21,15 +21,69 @@ export const calculator = () => {
 	// Курс валют (1 евро = 3.57 BYN)
 	const BYN_TO_EUR = 1 / 3.57;
 
-	// Функция получения выбранного значения радиокнопки
-	const getSelectedRadioValue = (name) => {
-		const radios = document.getElementsByName(name);
-		for (const radio of radios) {
-			if (radio.checked) {
-				return radio.value;
+	// Инициализация кастомных селектов
+	const initCustomSelects = () => {
+		const selects = document.querySelectorAll(".calculator__select");
+
+		selects.forEach((select) => {
+			const header = select.querySelector(".calculator__select-header");
+			const items = select.querySelectorAll(".calculator__select-item");
+			const current = select.querySelector(".calculator__select-current");
+			const hiddenInput = select.querySelector('input[type="hidden"]');
+
+			// Обработчик клика по заголовку селекта
+			header.addEventListener("click", () => {
+				// Закрываем все другие селекты
+				selects.forEach((otherSelect) => {
+					if (otherSelect !== select) {
+						otherSelect.classList.remove("active");
+					}
+				});
+
+				// Переключаем активное состояние текущего селекта
+				select.classList.toggle("active");
+			});
+
+			// Обработчик клика по элементу селекта
+			items.forEach((item) => {
+				item.addEventListener("click", () => {
+					// Обновляем текст в заголовке
+					current.textContent = item.textContent;
+
+					// Обновляем скрытое поле ввода
+					if (hiddenInput) {
+						hiddenInput.value = item.dataset.value;
+					}
+
+					// Снимаем выделение со всех элементов
+					items.forEach((i) => {
+						i.dataset.selected = "false";
+					});
+
+					// Выделяем выбранный элемент
+					item.dataset.selected = "true";
+
+					// Закрываем селект
+					select.classList.remove("active");
+				});
+			});
+		});
+
+		// Закрытие селекта при клике вне его
+		document.addEventListener("click", (e) => {
+			const isSelect = e.target.closest(".calculator__select");
+			if (!isSelect) {
+				selects.forEach((select) => {
+					select.classList.remove("active");
+				});
 			}
-		}
-		return null;
+		});
+	};
+
+	// Функция получения значения из кастомного селекта
+	const getSelectValue = (id) => {
+		const hiddenInput = document.getElementById(id);
+		return hiddenInput ? hiddenInput.value : null;
 	};
 
 	// Функция форматирования числа в денежный формат
@@ -144,9 +198,9 @@ export const calculator = () => {
 	const calculateCustomsFees = () => {
 		const carCost = parseFloat(carCostInput.value) || 0;
 		const engineVolume = parseFloat(engineVolumeInput.value) || 0;
-		const carType = getSelectedRadioValue("carType");
-		const engineType = getSelectedRadioValue("engineType");
-		const carAge = getSelectedRadioValue("carAge");
+		const carType = getSelectValue("carType");
+		const engineType = getSelectValue("engineType");
+		const carAge = getSelectValue("carAge");
 		const isDecree140 = decree140Checkbox ? decree140Checkbox.checked : false;
 
 		if (carCost <= 0 || engineVolume <= 0) {
@@ -157,10 +211,7 @@ export const calculator = () => {
 		let duty = 0;
 		let recyclingFee = 0;
 
-		if (engineType === "electric") {
-			duty = 0;
-			recyclingFee = RECYCLING_FEE_UNDER_3_BYN * BYN_TO_EUR;
-		} else if (carType === "auto") {
+		if (carType === "auto") {
 			if (carAge === "under3") {
 				duty = calculateDutyUnder3Years(carCost, engineVolume, isDecree140);
 				recyclingFee = RECYCLING_FEE_UNDER_3_BYN * BYN_TO_EUR;
@@ -174,6 +225,10 @@ export const calculator = () => {
 		} else if (carType === "moto") {
 			duty = calculateDutyMoto(carCost, engineVolume);
 			recyclingFee = 0;
+		}
+
+		if (engineType === "electric") {
+			duty = 0;
 		}
 
 		const customsFee = CUSTOMS_FEE_BYN * BYN_TO_EUR;
@@ -195,5 +250,6 @@ export const calculator = () => {
 	}
 
 	// Инициализация калькулятора
+	initCustomSelects();
 	initTooltips();
 };

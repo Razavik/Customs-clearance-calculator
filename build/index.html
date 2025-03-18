@@ -31,15 +31,16 @@
 
 		<div class="calculator__field">
 			<label class="calculator__label">Тип ТС</label>
-			<div class="calculator__radio-group">
-				<div class="calculator__radio">
-					<input type="radio" id="carTypeAuto" name="carType" value="auto" checked />
-					<label for="carTypeAuto">Авто</label>
+			<div class="calculator__select" id="carTypeSelect">
+				<div class="calculator__select-header">
+					<span class="calculator__select-current">Авто</span>
+					<div class="calculator__select-icon"></div>
 				</div>
-				<div class="calculator__radio">
-					<input type="radio" id="carTypeMoto" name="carType" value="moto" />
-					<label for="carTypeMoto">Мото</label>
+				<div class="calculator__select-body">
+					<div class="calculator__select-item" data-value="auto" data-selected="true">Авто</div>
+					<div class="calculator__select-item" data-value="moto">Мото</div>
 				</div>
+				<input type="hidden" id="carType" name="carType" value="auto" />
 			</div>
 		</div>
 
@@ -55,42 +56,36 @@
 
 		<div class="calculator__field">
 			<label class="calculator__label">Тип двигателя</label>
-			<div class="calculator__radio-group">
-				<div class="calculator__radio">
-					<input type="radio" id="engineTypeIce" name="engineType" value="ice" checked />
-					<label for="engineTypeIce">ДВС</label>
+			<div class="calculator__select" id="engineTypeSelect">
+				<div class="calculator__select-header">
+					<span class="calculator__select-current">ДВС</span>
+					<div class="calculator__select-icon"></div>
 				</div>
-				<div class="calculator__radio">
-					<input
-						type="radio"
-						id="engineTypeElectric"
-						name="engineType"
-						value="electric"
-					/>
-					<label for="engineTypeElectric">Электро</label>
+				<div class="calculator__select-body">
+					<div class="calculator__select-item" data-value="ice" data-selected="true">ДВС</div>
+					<div class="calculator__select-item" data-value="electric">Электро</div>
 				</div>
+				<input type="hidden" id="engineType" name="engineType" value="ice" />
 			</div>
-			<div class="calculator__checkbox">
-				<input type="checkbox" id="decree140" name="decree140" />
-				<label for="decree140">с учетом 140-го Указа</label>
-			</div>
+		</div>
+		<div class="calculator__checkbox">
+			<input type="checkbox" id="decree140" name="decree140" />
+			<label for="decree140">с учетом 140-го Указа</label>
 		</div>
 
 		<div class="calculator__field">
 			<label class="calculator__label">Возраст ТС</label>
-			<div class="calculator__radio-group calculator__radio-group--column">
-				<div class="calculator__radio calculator__radio--block">
-					<input type="radio" id="ageUnder3" name="carAge" value="under3" checked />
-					<label for="ageUnder3">до 3-х лет</label>
+			<div class="calculator__select" id="carAgeSelect">
+				<div class="calculator__select-header">
+					<span class="calculator__select-current">до 3-х лет</span>
+					<div class="calculator__select-icon"></div>
 				</div>
-				<div class="calculator__radio calculator__radio--block">
-					<input type="radio" id="age3to5" name="carAge" value="3to5" />
-					<label for="age3to5">3-5 лет</label>
+				<div class="calculator__select-body">
+					<div class="calculator__select-item" data-value="under3" data-selected="true">до 3-х лет</div>
+					<div class="calculator__select-item" data-value="3to5">3-5 лет</div>
+					<div class="calculator__select-item" data-value="over5">старше 5 лет</div>
 				</div>
-				<div class="calculator__radio calculator__radio--block">
-					<input type="radio" id="ageOver5" name="carAge" value="over5" />
-					<label for="ageOver5">старше 5 лет</label>
-				</div>
+				<input type="hidden" id="carAge" name="carAge" value="under3" />
 			</div>
 		</div>
 
