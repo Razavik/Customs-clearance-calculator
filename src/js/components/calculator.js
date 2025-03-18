@@ -163,14 +163,17 @@ export const calculator = () => {
 		} else if (carType === "auto") {
 			if (carAge === "under3") {
 				duty = calculateDutyUnder3Years(carCost, engineVolume, isDecree140);
+				recyclingFee = RECYCLING_FEE_UNDER_3_BYN * BYN_TO_EUR;
 			} else if (carAge === "3to5") {
 				duty = calculateDuty3To5Years(engineVolume, isDecree140);
+				recyclingFee = RECYCLING_FEE_OVER_3_BYN * BYN_TO_EUR;
 			} else if (carAge === "over5") {
 				duty = calculateDutyOver5Years(engineVolume, isDecree140);
+				recyclingFee = RECYCLING_FEE_OVER_3_BYN * BYN_TO_EUR;
 			}
-			recyclingFee = RECYCLING_FEE_UNDER_3_BYN * BYN_TO_EUR;
 		} else if (carType === "moto") {
 			duty = calculateDutyMoto(carCost, engineVolume);
+			recyclingFee = 0;
 		}
 
 		const customsFee = CUSTOMS_FEE_BYN * BYN_TO_EUR;
