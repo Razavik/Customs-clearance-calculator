@@ -33,37 +33,30 @@ export const calculator = () => {
 
 			// Обработчик клика по заголовку селекта
 			header.addEventListener("click", () => {
-				// Закрываем все другие селекты
 				selects.forEach((otherSelect) => {
 					if (otherSelect !== select) {
 						otherSelect.classList.remove("active");
 					}
 				});
 
-				// Переключаем активное состояние текущего селекта
 				select.classList.toggle("active");
 			});
 
 			// Обработчик клика по элементу селекта
 			items.forEach((item) => {
 				item.addEventListener("click", () => {
-					// Обновляем текст в заголовке
 					current.textContent = item.textContent;
 
-					// Обновляем скрытое поле ввода
 					if (hiddenInput) {
 						hiddenInput.value = item.dataset.value;
 					}
 
-					// Снимаем выделение со всех элементов
 					items.forEach((i) => {
 						i.dataset.selected = "false";
 					});
 
-					// Выделяем выбранный элемент
 					item.dataset.selected = "true";
 
-					// Закрываем селект
 					select.classList.remove("active");
 				});
 			});
