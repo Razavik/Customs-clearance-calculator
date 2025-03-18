@@ -117,10 +117,6 @@ export const calculator = () => {
 
 		let duty = Math.max(dutyByPrice, dutyByEngine);
 
-		if (isDecree140) {
-			duty /= 2;
-		}
-
 		return duty;
 	};
 
@@ -140,10 +136,6 @@ export const calculator = () => {
 			duty = engineVolume * 3;
 		} else {
 			duty = engineVolume * 3.6;
-		}
-
-		if (isDecree140) {
-			duty /= 2;
 		}
 
 		return duty;
@@ -167,14 +159,10 @@ export const calculator = () => {
 			duty = engineVolume * 5.7;
 		}
 
-		if (isDecree140) {
-			duty /= 2;
-		}
-
 		return duty;
 	};
 
-	const calculateDutyMoto = (carCost, engineVolume) => {
+	const calculateDutyMoto = (carCost, engineVolume, isDecree140) => {
 		let firstIndicator;
 
 		if (engineVolume <= 800) {
@@ -206,18 +194,24 @@ export const calculator = () => {
 
 		if (carType === "auto") {
 			if (carAge === "under3") {
-				duty = calculateDutyUnder3Years(carCost, engineVolume, isDecree140);
+				duty = calculateDutyUnder3Years(carCost, engineVolume);
 				recyclingFee = RECYCLING_FEE_UNDER_3_BYN * BYN_TO_EUR;
 			} else if (carAge === "3to5") {
-				duty = calculateDuty3To5Years(engineVolume, isDecree140);
+				duty = calculateDuty3To5Years(engineVolume);
 				recyclingFee = RECYCLING_FEE_OVER_3_BYN * BYN_TO_EUR;
 			} else if (carAge === "over5") {
-				duty = calculateDutyOver5Years(engineVolume, isDecree140);
+				duty = calculateDutyOver5Years(engineVolume);
 				recyclingFee = RECYCLING_FEE_OVER_3_BYN * BYN_TO_EUR;
 			}
-		} else if (carType === "moto") {
+		}
+
+		if (carType === "moto") {
 			duty = calculateDutyMoto(carCost, engineVolume);
 			recyclingFee = 0;
+		}
+
+		if (isDecree140) {
+			duty /= 2;
 		}
 
 		if (engineType === "electric") {
