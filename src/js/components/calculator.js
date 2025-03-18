@@ -18,8 +18,8 @@ export const calculator = () => {
 	const RECYCLING_FEE_UNDER_3_BYN = 544; // Утилизационный сбор для авто до 3 лет
 	const RECYCLING_FEE_OVER_3_BYN = 1089; // Утилизационный сбор для авто от 3 лет и старше
 
-	// Курс валют (1 евро = 3.57 BYN)
-	const BYN_TO_EUR = 1 / 3.57;
+	// Курс валют (1 евро = 3.34 BYN)
+	const BYN_TO_EUR = 1 / 3.34;
 
 	// Инициализация кастомных селектов
 	const initCustomSelects = () => {
