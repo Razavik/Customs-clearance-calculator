@@ -90,7 +90,7 @@ export const calculator = () => {
 	};
 
 	// Функция расчета таможенной пошлины для авто до 3 лет
-	const calculateDutyUnder3Years = (carCost, engineVolume, isDecree140) => {
+	const calculateDutyUnder3Years = (carCost, engineVolume) => {
 		// Способ 1: По стоимости автомобиля
 		let dutyByPrice;
 		if (carCost <= 8500) {
@@ -121,7 +121,7 @@ export const calculator = () => {
 	};
 
 	// Функция расчета таможенной пошлины для авто от 3 до 5 лет
-	const calculateDuty3To5Years = (engineVolume, isDecree140) => {
+	const calculateDuty3To5Years = (engineVolume) => {
 		let duty;
 
 		if (engineVolume <= 1000) {
@@ -142,7 +142,7 @@ export const calculator = () => {
 	};
 
 	// Функция расчета таможенной пошлины для авто старше 5 лет
-	const calculateDutyOver5Years = (engineVolume, isDecree140) => {
+	const calculateDutyOver5Years = (engineVolume) => {
 		let duty;
 
 		if (engineVolume <= 1000) {
@@ -162,7 +162,7 @@ export const calculator = () => {
 		return duty;
 	};
 
-	const calculateDutyMoto = (carCost, engineVolume, isDecree140) => {
+	const calculateDutyMoto = (carCost, engineVolume) => {
 		let firstIndicator;
 
 		if (engineVolume <= 800) {
